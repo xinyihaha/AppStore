@@ -1,0 +1,46 @@
+
+    <div class="sidebar-nav">
+        <!--<form class="search form-inline">
+            <input type="text" placeholder="搜索...">
+        </form>-->
+
+        <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>仪表盘</a>
+        <ul id="dashboard-menu" class="nav nav-list collapse<?php if(request()->controller=='Index') echo ' in';?>">
+            <li><a href="<?php echo Url('Index/index')?>">首页</a></li>
+            <li ><a href="<?php echo Url('Publicc/help')?>">公司政策</a></li>
+            <li ><a href="<?php echo Url('Publicc/help')?>">关于我们</a></li>
+        </ul>
+        {if condition="request()->session('UserID') != NULL"}
+        <a href="#error-menu" class="nav-header collapsed" data-toggle="collapse"><i class="icon-exclamation-sign"></i>App管理<i class="icon-chevron-up"></i></a>
+        <ul id="error-menu" class="nav nav-list collapse<?php if(request()->controller=='App') echo ' in';?>">
+            {if condition="request()->session('Permission') eq 1"}
+                <li ><a href="<?php echo Url('App/all')?>">所有App列表</a></li>
+            {/if}
+            <li ><a href="<?php echo Url('App/index')?>">我的App列表</a></li>
+            <li ><a href="<?php echo Url('App/add')?>">App添加</a></li>
+
+
+            {if condition="request()->session('Permission') eq 1"}
+                <li ><a href="<?php echo Url('App/review')?>">App审核</a></li>
+            {/if}
+        </ul>
+        {if condition="request()->session('Permission') eq 1"}
+        <if condition="$isAdmin">
+            <a href="#accounts-menu" class="nav-header" data-toggle="collapse"><i class="icon-briefcase"></i>用户管理<span class="label label-info">+3</span></a>
+            <ul id="accounts-menu" class="nav nav-list collapse<?php if(request()->controller=='User') echo ' in';?>">
+                <li ><a href="<?php echo Url('User/index')?>">用户列表</a></li>
+            </ul>
+        </if>
+        {/if}
+        <a href="#legal-menu" class="nav-header" data-toggle="collapse"><i class="icon-legal"></i>我的账户</a>
+        <ul id="legal-menu" class="nav nav-list collapse<?php if(request()->controller=='User') echo ' in';?>">
+            <li><a href="<?php echo Url('User/info')?>">我的资料</a></li>
+            <li ><a href="<?php echo Url('User/modify')?>">修改信息</a></li>
+            {/if}
+        </ul>
+        <a href="<?php echo Url('Publicc/email')?>" class="nav-header" ><i class="icon-comment"></i>联系我们</a>
+        <a href="<?php echo Url('Publicc/help')?>" class="nav-header" ><i class="icon-question-sign"></i>帮助</a>
+
+    </div>
+    
+
